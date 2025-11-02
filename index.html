@@ -1,4 +1,4 @@
-  <!doctype html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8" />
@@ -17,10 +17,10 @@ body{
   margin:0;
   min-height:100vh;
   display:flex;
-  align-items:center;
+  align-items:flex-start;
   justify-content:center;
   background:var(--cinza);
-  padding:18px;
+  padding:12px;
 }
 .empresa-card{
   width:100%;
@@ -29,54 +29,57 @@ body{
   overflow:hidden;
   background:var(--branco);
   box-shadow:0 10px 30px rgba(0,0,0,0.09);
+  max-height:95vh;
+  display:flex;
+  flex-direction:column;
+  margin-top:12px;
+  margin-bottom:12px;
 }
-.carousel{position:relative;width:100%;height:220px;overflow:hidden}
+.carousel{position:relative;width:100%;flex:1 0 auto;overflow:hidden;border-bottom:1px solid #eee;height:240px;}
 .carousel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.03);transition:opacity .6s ease, transform .6s ease}
 .carousel img.active{opacity:1;transform:scale(1);z-index:1}
 .dots{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);display:flex;gap:8px;z-index:2}
 .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.6);cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,0.25)}
 .dot.active{background:var(--verde)}
-.empresa-content{padding:18px}
+.empresa-content{padding:16px;flex-shrink:0}
 .empresa-content h2{margin:0 0 8px;font-size:20px;color:var(--verde);font-weight:700}
 .empresa-content p{margin:0 0 14px;color:#555;font-size:14px;line-height:1.4}
 .btn{display:inline-block;padding:10px 18px;border-radius:12px;background:var(--verde);color:var(--branco);text-decoration:none;font-weight:700;transition:background .18s}
 .btn:hover{background:#178a00}
-.modal-bg{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.52);z-index:1200;padding:20px}
-.modal{width:100%;max-width:420px;background:var(--branco);border-radius:14px;padding:20px;box-shadow:0 18px 50px rgba(0,0,0,0.18);transform:translateY(8px);opacity:0;transition:opacity .25s ease, transform .25s ease}
+.modal-bg{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.52);z-index:1200;padding:12px}
+.modal{width:100%;max-width:420px;background:var(--branco);border-radius:14px;padding:20px;box-shadow:0 18px 50px rgba(0,0,0,0.18);transform:translateY(8px);opacity:0;transition:opacity .25s ease, transform .25s ease;max-height:90vh;overflow-y:auto;}
 .modal.open{transform:none;opacity:1}
 .modal h3{margin:0 0 8px;color:var(--verde);font-size:18px}
 .modal p{margin:0;color:#444;font-size:14px}
-.social-links{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.social-links{margin-top:14px;display:grid;grid-template-columns:1fr;gap:12px}
 .social-btn{
   display:flex;
   align-items:center;
   gap:10px;
   justify-content:center;
-  padding:8px 14px;
+  padding:10px 14px;
   border-radius:10px;
   background:var(--verde);
   color:white;
   text-decoration:none;
   font-weight:700;
-  font-size:13px;
+  font-size:14px;
   transition:transform .12s;
 }
 .social-btn svg{width:20px;height:20px;flex:0 0 20px;fill:white}
 .social-btn:active{transform:translateY(1px)}
 .fechar-modal{margin-top:16px;border-radius:10px;padding:10px 12px;border:2px solid var(--verde);background:transparent;color:var(--verde);width:100%;font-weight:700;cursor:pointer}
 .fechar-modal:hover{background:var(--verde);color:white}
-@media (max-width:420px){.carousel{height:190px}}
+@media (max-width:420px){.carousel{height:220px}}
 </style>
 </head>
 <body>
 
 <div class="empresa-card" role="region" aria-label="Card Sabor Castrense">
   <div class="carousel" id="carousel" aria-hidden="false">
+    <!-- Substitua URLs pelas imagens da empresa -->
     <img src="https://picsum.photos/id/292/800/400" alt="Prato 1" class="active" />
     <img src="https://picsum.photos/id/293/800/400" alt="Prato 2" />
-    <img src="https://picsum.photos/id/294/800/400" alt="Prato 3" />
-    <img src="https://picsum.photos/id/295/800/400" alt="Prato 4" />
-    <img src="https://picsum.photos/id/296/800/400" alt="Prato 5" />
     <div class="dots" id="dots" aria-hidden="true"></div>
   </div>
 
@@ -90,111 +93,93 @@ body{
 <div class="modal-bg" id="modalBg" role="dialog" aria-modal="true" aria-hidden="true">
   <div class="modal" id="modal" role="document">
     <h3>Fale conosco</h3>
-    <p><strong>WhatsApp:</strong></p>
-    <p style="margin:6px 0 0 0;color:#666;font-size:13px">Toque para abrir a conversa no WhatsApp.</p>
 
     <div class="social-links" id="socialLinks">
+      <!-- WhatsApp -->
       <a class="social-btn" id="waBtn" href="https://wa.me/5543988601609?text=Ol%C3%A1%21%20Encontrei%20seu%20contato%20no%20app%20e%20gostaria%20de%20ser%20atendido%28a%29." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-        <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32 103.5 32 8 127.5 8 247.9c0 43.6 11.5 86 33.5 123.1L0 480l112.6-41.1c35.4 19.5 75.1 29.8 116.3 29.8h.1c120.4 0 215.9-95.5 215.9-215.9 0-59.3-23.1-115.1-64-156.9zM223.9 438.7c-36.4 0-72.1-9.8-103.1-28.3l-7.4-4.4-66.8 24.4 22.8-68.8-4.8-7.1C47 317.4 36.9 283.1 36.9 247.9c0-103.3 84-187.3 187.3-187.3 50 0 97.1 19.5 132.5 54.9 35.3 35.3 54.8 82.4 54.8 132.4 0 103.3-84 187.3-187.3 187.3zm101.7-138.7c-5.6-2.8-33.1-16.3-38.2-18.1-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18.1-17.5 21.8-3.2 3.7-6.4 4.2-12 1.4-5.6-2.8-23.6-8.7-44.9-27.8-16.6-14.8-27.8-33.1-31-38.7-3.2-5.6-.3-8.7 2.4-11.4 2.4-2.4 5.6-6.4 8.4-9.6 2.8-3.2 3.7-5.6 5.6-9.3 1.9-3.7.9-7-0.5-9.8-1.4-2.8-12.5-30-17.1-41.1-4.5-10.8-9.1-9.3-12.5-9.5-3.2-0.2-7-0.2-10.8-0.2s-9.8 1.4-14.9 7c-5.1 5.6-19.5 19.1-19.5 46.4s20 53.8 22.8 57.6c2.8 3.7 39.3 60.2 95.3 84.4 13.3 5.7 23.6 9.1 31.7 11.7 13.3 4.2 25.3 3.6 34.8 2.2 10.6-1.6 33.1-13.5 37.8-26.5 4.7-13 4.7-24.1 3.3-26.5-1.3-2.2-5-3.6-10.6-6.4z"/></svg>
-        WhatsApp
+        <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+          <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32 103.5 32 8 127.5 8 247.9c0 43.6 11.5 86 33.5 123.1L0 480l112.6-41.1c35.4 19.5 75.1 29.8 116.3 29.8h.1c120.4 0 215.9-95.5 215.9-215.9 0-59.3-23.1-115.1-64-156.9zM223.9 438.7c-36.4 0-72.1-9.8-103.1-28.3l-7.4-4.4-66.8 24.4 22.8-68.8-4.8-7.1C47 317.4 36.9 283.1 36.9 247.9c0-103.3 84-187.3 187.3-187.3 50 0 97.1 19.5 132.5 54.9 35.3 35.3 54.8 82.4 54.8 132.4 0 103.3-84 187.3-187.3 187.3z"/>
+        </svg>WhatsApp
       </a>
 
-      <a class="social-btn" href="https://www.google.com/maps/search/?api=1&query=Sabor+Castrense+Jaguaria%C3%ADva+PR" target="_blank" rel="noopener noreferrer" aria-label="Como chegar">
-        <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M168 0C75.1 0 0 75.1 0 168c0 87.9 134.2 266 168 298.5 4.3 3.9 10.5 3.9 14.9 0C217.8 434 352 255.9 352 168 352 75.1 276.9 0 184 0h-16zM184 224c-30.9 0-56-25.1-56-56s25.1-56 56-56 56 25.1 56 56-25.1 56-56 56z"/></svg>
-        Como chegar
+      <!-- Como Chegar -->
+      <a class="social-btn" id="mapsBtn" href="https://www.google.com/maps/search/?api=1&query=Sabor+Castrense" target="_blank" rel="noopener noreferrer" aria-label="Como chegar">
+        <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+          <path d="M168 0C75.1 0 0 75.1 0 168c0 87.9 152 344 168 344s168-256.1 168-344c0-92.9-75.1-168-168-168zm0 240c-39.8 0-72-32.2-72-72s32.2-72 72-72 72 32.2 72 72-32.2 72-72 72z"/>
+        </svg>Como Chegar
+      </a>
+
+      <!-- Cardápio -->
+      <a class="social-btn" id="cardapioBtn" href="https://app.anota.ai/m/Nh3jFj5-w" target="_blank" rel="noopener noreferrer" aria-label="Cardápio">
+        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+          <path d="M96 0C78.3 0 64 14.3 64 32V480c0 17.7 14.3 32 32 32H416c17.7 0 32-14.3 32-32V128L352 0H96zM256 416c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zM336 80V16l96 96H352c-8.8 0-16-7.2-16-16z"/>
+        </svg>Cardápio
       </a>
     </div>
 
-    <button class="fechar-modal" id="fecharModal">Fechar</button>
   </div>
 </div>
 
 <script>
-/* CARROSSEL */
+// ===== CARROSSEL =====
 (function(){
   const carousel = document.getElementById('carousel');
-  const imgs = Array.from(carousel.querySelectorAll('img'));
-  const dotsWrap = document.getElementById('dots');
-  let idx = imgs.findIndex(i=>i.classList.contains('active'));
-  if(idx < 0) idx = 0, imgs[0].classList.add('active');
+  const slides = carousel.querySelectorAll('img');
+  const dotsContainer = document.getElementById('dots');
+  let current = 0;
+  const total = slides.length;
 
-  const singleImage = imgs.length === 1;
-
-  if(!singleImage){
-    imgs.forEach((_,i)=>{
-      const d = document.createElement('div');
-      d.className = 'dot' + (i===idx ? ' active':'');
-      d.dataset.index = i;
-      d.onclick = ()=> goTo(+d.dataset.index);
-      dotsWrap.appendChild(d);
+  if(total>1){
+    slides.forEach((_,i)=>{
+      const dot=document.createElement('div');
+      dot.className='dot'+(i===0?' active':'');
+      dot.addEventListener('click',()=>showSlide(i));
+      dotsContainer.appendChild(dot);
     });
   }
 
-  let interval = null;
-  const start = ()=> { if(!singleImage){ stop(); interval = setInterval(()=> next(), 3500); } };
-  const stop = ()=> { if(interval){ clearInterval(interval); interval = null; } };
-
-  function update(){ imgs.forEach((img,i)=> img.classList.toggle('active', i===idx)); 
-    if(!singleImage) Array.from(dotsWrap.children).forEach((d,i)=> d.classList.toggle('active', i===idx));
-  }
-  function next(){ idx = (idx + 1) % imgs.length; update(); }
-  function prev(){ idx = (idx - 1 + imgs.length) % imgs.length; update(); }
-  function goTo(i){ idx = i % imgs.length; update(); }
-
-  let startX = 0, dx = 0;
-  if(!singleImage){
-    carousel.addEventListener('touchstart', e=> { stop(); startX = e.touches[0].clientX; }, {passive:true});
-    carousel.addEventListener('touchmove', e=> { dx = e.touches[0].clientX - startX; }, {passive:true});
-    carousel.addEventListener('touchend', e=>{ if(Math.abs(dx) > 40){ if(dx < 0) next(); else prev(); } dx = 0; start(); });
-
-    carousel.addEventListener('mouseenter', stop);
-    carousel.addEventListener('mouseleave', start);
+  function showSlide(index){
+    slides.forEach(s=>s.classList.remove('active'));
+    slides[index].classList.add('active');
+    const dots=dotsContainer.querySelectorAll('.dot');
+    dots.forEach(d=>d.classList.remove('active'));
+    if(dots[index]) dots[index].classList.add('active');
+    current=index;
   }
 
-  update();
-  start();
+  if(total>1){
+    setInterval(()=>showSlide((current+1)%total),4000);
+  }
 })();
 
-/* MODAL */
+// ===== MODAL =====
 (function(){
-  const abrir = document.getElementById('abrirModal');
-  const modalBg = document.getElementById('modalBg');
-  const modal = document.getElementById('modal');
-  const fechar = document.getElementById('fecharModal');
+  const modalBg=document.getElementById('modalBg');
+  const modal=document.getElementById('modal');
+  const abrir=document.getElementById('abrirModal');
 
-  function openModal(){
-    modalBg.style.display = 'flex';
-    modalBg.setAttribute('aria-hidden','false');
-    modal.classList.add('open');
-    const focusEl = modal.querySelector('a, button');
-    if(focusEl) focusEl.focus();
-    document.addEventListener('keydown', onKey);
-  }
+  abrir.addEventListener('click',(e)=>{
+    e.preventDefault();
+    modalBg.style.display='flex';
+    setTimeout(()=>modal.classList.add('open'),10);
+  });
+
+  modalBg.addEventListener('click',(e)=>{
+    if(e.target===modalBg) closeModal();
+  });
+
+  const fecharBtn=document.createElement('button');
+  fecharBtn.className='fechar-modal';
+  fecharBtn.innerText='Fechar';
+  fecharBtn.addEventListener('click',closeModal);
+  modal.appendChild(fecharBtn);
+
   function closeModal(){
     modal.classList.remove('open');
-    modalBg.setAttribute('aria-hidden','true');
-    setTimeout(()=> modalBg.style.display = 'none', 220);
-    document.removeEventListener('keydown', onKey);
-    document.getElementById('abrirModal').focus();
+    setTimeout(()=>modalBg.style.display='none',250);
   }
-  function onKey(e){ if(e.key === 'Escape') closeModal(); }
-
-  abrir.addEventListener('click', e=> { e.preventDefault(); openModal(); });
-  fechar.addEventListener('click', closeModal);
-  modalBg.addEventListener('click', e=> { if(e.target === modalBg) closeModal(); });
-
-  modal.addEventListener('keydown', function(e){
-    if(e.key === 'Tab'){
-      const focusables = Array.from(modal.querySelectorAll('a,button')).filter(el=>!el.hasAttribute('disabled'));
-      if(focusables.length === 0) return;
-      const first = focusables[0], last = focusables[focusables.length-1];
-      if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
-      else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
-    }
-  });
 })();
 </script>
 
 </body>
 </html>
-      
